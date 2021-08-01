@@ -1,0 +1,8 @@
+variables:
+  HELM_EXPERIMENTAL_OCI: 1
+  registryServerName: foodforlifeacr.azurecr.io
+  dockerRegistryServiceConnectionName: foodforlifeacr-service-connection
+  projectName: foodforlife-producer-api
+  imageTag: 0.1.2-snapshot
+  helmChartPath : deployments/producer-api-helm
+  helmChart : producer-api-helm

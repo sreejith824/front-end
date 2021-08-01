@@ -1,0 +1,24 @@
+name: CD-AKS-HELM
+
+trigger: none
+
+pr: none
+variables:
+  - group: socksshop-frontend-variable-group
+  - template: cd-vars-template.yml
+stages:
+  - stage: test
+    displayName: test
+    jobs:
+      - deployment: test
+        variables:
+          - group: socksshop-frontend-variable-group
+        displayName: deploy helm chart into AKS
+        pool:
+          vmImage: ubuntu-latest
+        environment: test-$(projectName)
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - template: cd-steps-template.yml

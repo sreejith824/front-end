@@ -1,0 +1,8 @@
+variables:
+  HELM_EXPERIMENTAL_OCI: 1
+  registryServerName: socksshopacr.azurecr.io
+  projectName: socksshop-frontend
+  aksNamespace: socksshop
+  aksClusterName: socksshop-aks
+  resourceGroup: socksshop-rg
+  helmChart : socksshop-frontend-helm

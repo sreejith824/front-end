@@ -1,0 +1,24 @@
+
+steps:
+  - task: Docker@2
+    displayName: Build and push an image to container registry  
+    inputs:
+      command: 'buildAndPush'
+      Dockerfile: '**/Dockerfile'      
+      containerRegistry: $(dockerRegistryServiceConnectionName)
+      repository: $(projectName)
+      tags: |
+        $(imageTag)
+
+  - task: HelmInstaller@1
+    displayName: "install helm"
+
+  - bash: |
+      echo $(ACR_HELM_SP_PASSWORD) | helm registry login $(registryServerName) --username $(ACR_HELM_SP_USERNAME) --password-stdin
+      helm chart save $(helmChartPath) $(registryServerName)/$(helmChart):latest
+      helm chart push $(registryServerName)/$(helmChart):latest
+    failOnStderr: true
+    displayName: "helm package"
+
+  - publish: $(build.artifactStagingDirectory)
+    artifact: build-artifact

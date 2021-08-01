@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "socksshop-frontend-helm.fullname" . }}
+  labels:
+    {{- include "socksshop-frontend-helm.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    {{- include "socksshop-frontend-helm.selectorLabels" . | nindent 4 }}

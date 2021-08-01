@@ -1,0 +1,16 @@
+name: CI Pipeline- Image and Helm to ACR
+
+trigger:
+ - main
+
+pr: none
+
+pool:
+  vmImage: "ubuntu-latest"
+
+variables:
+  - group: foodforlife-variable-group
+  - template: ci-vars-template.yml
+
+steps:
+  - template: ci-steps-template.yml
