@@ -9,7 +9,7 @@ on: [push]
 env:
   ACR_SERVER_NAME : socksshopacr.azurecr.io
   APP_NAME: socksshop-frontend
-  TAG: 1.0.0
+  TAG: 1.1.0
   HELM_EXPERIMENTAL_OCI: 1
   HELM_VERSION_TO_INSTALL: 3.5.0  
   ACR_SP: http://socksshopacr-push-service-principal

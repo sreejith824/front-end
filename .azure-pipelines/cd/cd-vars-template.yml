@@ -6,4 +6,4 @@ variables:
   aksClusterName: socksshop-aks
   resourceGroup: socksshop-rg
   helmChart : socksshop-frontend-helm
-  tag : 1.0.0
+  tag : 1.1.0
