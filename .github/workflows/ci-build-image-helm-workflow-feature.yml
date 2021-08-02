@@ -9,7 +9,7 @@ on: [push]
 env:
   ACR_SERVER_NAME : socksshopacr.azurecr.io
   APP_NAME: socksshop-frontend
-  TAG: latest
+  TAG: 1.0.0
   HELM_EXPERIMENTAL_OCI: 1
   HELM_VERSION_TO_INSTALL: 3.5.0  
   ACR_SP: http://socksshopacr-push-service-principal
@@ -59,8 +59,8 @@ jobs:
       # step 7 : Save & Push Helm chart to ACR    
       - name: save helm chart to local registry
         run: |
-          helm chart save ${{ env.HELM_CHART_PATH }} ${{ env.ACR_SERVER_NAME }}/${{ env.HELM_CHART }}:latest
+          helm chart save ${{ env.HELM_CHART_PATH }} ${{ env.ACR_SERVER_NAME }}/${{ env.HELM_CHART }}:${{ env.TAG }}
             
       - name: publish chart to acr
         run: |
-          helm chart push ${{ env.ACR_SERVER_NAME }}/${{ env.HELM_CHART }}:latest
+          helm chart push ${{ env.ACR_SERVER_NAME }}/${{ env.HELM_CHART }}:${{ env.TAG }}
