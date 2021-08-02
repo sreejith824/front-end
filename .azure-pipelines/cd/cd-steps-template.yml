@@ -11,8 +11,8 @@ steps:
 
        echo $(ACR_HELM_SP_PASSWORD) | helm registry login $(registryServerName) --username $(ACR_HELM_SP_USERNAME) --password-stdin
 
-       helm chart pull $(registryServerName)/$(helmChart):latest
-       helm chart export $(registryServerName)/$(helmChart):latest --destination $(pipeline.workspace)/install
+       helm chart pull $(registryServerName)/$(helmChart):$(tag)
+       helm chart export $(registryServerName)/$(helmChart):$(tag) --destination $(pipeline.workspace)/install
        
        helm upgrade --namespace $(aksNamespace) --create-namespace --install $(projectName) $(pipeline.workspace)/install/$(helmChart)
     failOnStderr: true
